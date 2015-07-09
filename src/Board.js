@@ -168,12 +168,42 @@
     // --------------------------------------------------------------
     //
     // test if a specific major diagonal on this board contains a conflict
-    hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
+    // colIndex = majorDiagonalColumnIndexAtFirstRow
+    hasMajorDiagonalConflictAt: function(colIndex) {
+      // pull out the board
+      var board = this.rows();
+      // variable called found set to false
+      var found = false;
+      // loop through rows, set i to 0, max should be less than board.length - colIndex, incrementing
+      for (var i=0; i<board.length - colIndex; i++){
+        // check board[i][colIndex + i] is 1
+        if (board[i][colIndex + i]){
+          // if found is true
+          if (found){
+            // return true
+            return true;
+          // else 
+          } else {
+            // set found to true 
+            found = true;
+          }
+        }
+      }
       return false; // fixme
     },
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
+      // pull out ye olde board
+      var board = this.rows();
+      // loop through rows
+      for (var i=0; i<board.length; i++){
+        // for each square, check if hasMajorDiagonalConflictAt
+        if ( this.hasMajorDiagonalConflictAt(i) ){
+          // return true
+          return true;
+        }
+      }
       return false; // fixme
     },
 

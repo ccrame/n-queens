@@ -125,11 +125,40 @@
     //
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex) {
+      // call board
+      var board = this.rows();
+      // declare variable found, set to false
+      var found = false;
+      // iterate through board, one row at a time
+      for (var i=0; i<board.length; i++){
+        // check colIndex in row if it's one
+        if (board[i][colIndex]){
+          // if found is true
+          if (found){
+            // return true
+            return true;
+          } else {
+          // else
+            // set found to true
+            found = true;
+          }
+        }
+      }
       return false; // fixme
     },
 
     // test if any columns on this board contain conflicts
     hasAnyColConflicts: function() {
+      //declare variable, store boardj
+      var board = this.rows();
+      //loop through all index in first row
+      for(var i = 0; i < board[0].length; i++){
+        //if statement - hasColConflictAt index in loop
+        if(this.hasColConflictAt(i)){
+          //return true if true
+          return true;
+        }
+      }
       return false; // fixme
     },
 

@@ -79,11 +79,42 @@
     //
     // test if a specific row on this board contains a conflict
     hasRowConflictAt: function(rowIndex) {
+    
+      //get row from board (this)
+      var board = this.rows();
+      var currentRow = board[rowIndex];
+      //define variable counter and set to false 
+      var bound = false;
+      //loop through each index in row
+      for(var i = 0; i < currentRow.length; i++){
+        //check what value is in index
+        //if index is 1 and counter is true
+        if(currentRow[i] === 1){
+          if(bound){
+            return true;
+          //return true
+          } else {
+          //set bound to true
+            bound = true;
+          }//else
+        }//if
+      }//for 
       return false; // fixme
+    
     },
-
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
+      // grab table
+      var board = this.rows();
+      // iterate through all the rows
+      for (var i=0; i<board.length; i++){
+        // call previous function on each value
+        // if true
+        if ( this.hasRowConflictAt(i) ){
+          // return true
+          return true;
+        }
+      }
       return false; // fixme
     },
 

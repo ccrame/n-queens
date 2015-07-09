@@ -213,12 +213,41 @@
     // --------------------------------------------------------------
     //
     // test if a specific minor diagonal on this board contains a conflict
-    hasMinorDiagonalConflictAt: function(minorDiagonalColumnIndexAtFirstRow) {
+    // colIndex = minorDiagonalColumnIndexAtFirstRow
+    hasMinorDiagonalConflictAt: function(colIndex) {
+      var board = this.rows();
+      // variable called found set to false
+      var found = false;
+      // loop through rows, set i to 0, max should be less than board.length - colIndex, incrementing
+      for (var i = 0; i <= colIndex; i++){
+        // check board[i][colIndex + i] is 1
+        if (board[i][colIndex - i]){
+          // if found is true
+          if (found){
+            // return true
+            return true;
+          // else 
+          } else {
+            // set found to true 
+            found = true;
+          }
+        }
+      }
       return false; // fixme
     },
 
     // test if any minor diagonals on this board contain conflicts
     hasAnyMinorDiagonalConflicts: function() {
+      // pull out ye olde board
+      var board = this.rows();
+      // loop through rows
+      for (var i=0; i<board.length; i++){
+        // for each square, check if hasMajorDiagonalConflictAt
+        if ( this.hasMinorDiagonalConflictAt(i) ){
+          // return true
+          return true;
+        }
+      }
       return false; // fixme
     }
 

@@ -151,6 +151,11 @@
     hasAnyColConflicts: function() {
       //declare variable, store boardj
       var board = this.rows();
+      // if board has no rows
+      if (!board.length){
+        // reurn false
+        return false;
+      }
       //loop through all index in first row
       for(var i = 0; i < board[0].length; i++){
         //if statement - hasColConflictAt index in loop
